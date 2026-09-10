@@ -53,7 +53,7 @@ ALLOWED_HOSTS = [
     host.strip()
     for host in os.getenv(
         "ALLOWED_HOSTS",
-        _default_hosts,
+        _default_hosts,'dekhobharat-1.onrender.com'
     ).split(",")
     if host.strip()
 ]
