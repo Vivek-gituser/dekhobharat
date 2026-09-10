@@ -1,0 +1,148 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Incredible India Tourism</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.8)), 
+                        url('{% static "images/tajmahal.jpg" %}') no-repeat center center/cover,
+                        url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            padding: 20px;
+        }
+
+        .card-container {
+            width: 100%;
+            max-width: 440px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            padding: 35px 30px;
+            color: #ffffff;
+        }
+
+        .header { text-align: center; margin-bottom: 25px; }
+        .header .chakra-icon { font-size: 38px; color: #FF9933; animation: spin 20s linear infinite; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            margin-top: 8px;
+            background: linear-gradient(45deg, #FF9933, #FFF, #138808);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .header p { font-size: 13px; color: #e2e8f0; font-weight: 300; }
+
+        .django-messages { margin-bottom: 15px; }
+        .alert { padding: 10px 14px; border-radius: 8px; font-size: 13px; margin-bottom: 8px; }
+        .alert-error { background: rgba(239, 68, 68, 0.25); border: 1px solid #ef4444; color: #fca5a5; }
+        .alert-success { background: rgba(34, 197, 94, 0.25); border: 1px solid #22c55e; color: #86efac; }
+
+        .input-group { position: relative; margin-bottom: 18px; }
+        .input-group i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #FF9933; font-size: 16px; }
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px 12px 45px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        .input-group input::placeholder { color: #cbd5e1; }
+        .input-group input:focus { border-color: #FF9933; background: rgba(255, 255, 255, 0.25); box-shadow: 0 0 10px rgba(255, 153, 51, 0.3); }
+
+        .form-options { display: flex; justify-content: space-between; align-items: center; font-size: 12px; margin-bottom: 20px; color: #e2e8f0; }
+        .form-options a { color: #FF9933; text-decoration: none; }
+
+        .btn-submit {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, #FF9933 0%, #d97706 100%);
+            border: none;
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(217, 119, 6, 0.4);
+        }
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(217, 119, 6, 0.6); }
+
+        .page-switch {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #cbd5e1;
+        }
+        .page-switch a { color: #FF9933; font-weight: 600; text-decoration: none; }
+        .page-switch a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        <div class="header">
+            <i class="fa-solid fa-dharmachakra chakra-icon"></i>
+            <h1>Incredible India</h1>
+            <p>Welcome back! Log in to resume your journey.</p>
+        </div>
+
+        {% if messages %}
+        <div class="django-messages">
+            {% for message in messages %}
+                <div class="alert alert-{% if message.tags %}{{ message.tags }}{% else %}error{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+            <div class="input-group">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" name="username" placeholder="Username or Email" required>
+            </div>
+            
+            <div class="input-group">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+
+            <div class="form-options">
+                <label><input type="checkbox" name="remember_me"> Remember Me</label>
+                <a href="{% url 'password_reset' %}">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="btn-submit">
+                Login <i class="fa-solid fa-right-to-bracket" style="margin-left: 6px;"></i>
+            </button>
+        </form>
+
+        <div class="page-switch">
+            New to Incredible India? <a href="{% url 'signup' %}">Create an Account</a>
+        </div>
+    </div>
+
+</body>
+</html>
