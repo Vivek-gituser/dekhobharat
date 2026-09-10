@@ -46,14 +46,15 @@ DEBUG = os.getenv("DEBUG", "True").lower() == "true"
 _default_hosts = (
     "127.0.0.1,"
     "localhost,"
-    "dekho-bharat.onrender.com"
+    "dekhobharat-1.onrender.com"
 )
 
 ALLOWED_HOSTS = [
     host.strip()
     for host in os.getenv(
+        
         "ALLOWED_HOSTS",
-        _default_hosts,'dekhobharat-1.onrender.com'
+        _default_hosts,
     ).split(",")
     if host.strip()
 ]
