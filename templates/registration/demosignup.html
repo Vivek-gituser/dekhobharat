@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sign Up | Incredible India</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 25px;
+
+            font-family: Arial, sans-serif;
+
+            background: linear-gradient(
+                135deg,
+                #ff9933,
+                #ffffff 50%,
+                #138808
+            );
+        }
+
+        .signup-container {
+            width: 100%;
+            max-width: 950px;
+
+            display: flex;
+
+            background: white;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        }
+
+        /* LEFT TOURISM SECTION */
+
+        .tourism-section {
+            width: 45%;
+            min-height: 600px;
+
+            padding: 45px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    rgba(0,0,0,0.45),
+                    rgba(0,0,0,0.55)
+                ),
+                url("https://images.unsplash.com/photo-1524492412937-b28074a5d7da")
+                center / cover;
+        }
+
+        .tourism-section h1 {
+            font-size: 42px;
+            margin-bottom: 18px;
+        }
+
+        .tourism-section p {
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .tagline {
+            margin-top: 25px;
+
+            color: #ffd166;
+
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+
+        /* FORM SECTION */
+
+        .form-section {
+            width: 55%;
+
+            padding: 45px;
+        }
+
+        .form-section h2 {
+            font-size: 32px;
+
+            color: #333;
+
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #777;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* FIELD */
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            color: #444;
+        }
+
+        .form-input {
+            width: 100%;
+
+            padding: 13px 15px;
+
+            border: 1.5px solid #ddd;
+
+            border-radius: 9px;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition: 0.2s;
+        }
+
+        .form-input:focus {
+            border-color: #ff9933;
+
+            box-shadow:
+                0 0 0 3px rgba(255,153,51,0.15);
+        }
+
+
+        /* DJANGO ERRORS */
+
+        .error {
+            margin-top: 6px;
+
+            color: #d32f2f;
+
+            font-size: 13px;
+        }
+
+        .error-box {
+            margin-bottom: 20px;
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+            background: #ffe8e8;
+
+            color: #c62828;
+
+            font-size: 13px;
+        }
+
+
+        /* PASSWORD HELP */
+
+        .password-help {
+            margin-top: 7px;
+
+            color: #777;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+
+        /* BUTTON */
+
+        .submit-btn {
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: linear-gradient(
+                90deg,
+                #ff9933,
+                #f57c00
+            );
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 20px rgba(255,153,51,0.35);
+        }
+
+
+        .login-link {
+            text-align: center;
+
+            margin-top: 20px;
+
+            color: #777;
+
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: #138808;
+
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 768px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .signup-container {
+                flex-direction: column;
+            }
+
+            .tourism-section {
+                width: 100%;
+                min-height: 250px;
+
+                padding: 30px;
+            }
+
+            .tourism-section h1 {
+                font-size: 32px;
+            }
+
+            .form-section {
+                width: 100%;
+
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+<div class="signup-container">
+
+    <!-- ============================= -->
+    <!-- INDIAN TOURISM SIDE -->
+    <!-- ============================= -->
+
+    <div class="tourism-section">
+
+        <h1>
+            🇮🇳 Incredible India
+        </h1>
+
+        <p>
+            Discover the beauty of India.
+            Explore ancient monuments, colorful
+            cultures, breathtaking landscapes and
+            unforgettable destinations.
+        </p>
+
+        <div class="tagline">
+            Explore. Experience. Enjoy. ✈️
+        </div>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- SIGNUP FORM -->
+    <!-- ============================= -->
+
+    <div class="form-section">
+
+        <h2>
+            Create Account
+        </h2>
+
+        <p class="subtitle">
+            Start your incredible journey across India.
+        </p>
+
+
+        <!-- GENERAL DJANGO ERRORS -->
+
+        {% if form.non_field_errors %}
+
+            <div class="error-box">
+
+                {% for error in form.non_field_errors %}
+                    {{ error }}
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <!-- USERNAME -->
+
+            <div class="form-group">
+
+                <label for="{{ form.username.id_for_label }}">
+                    Username
+                </label>
+
+                {{ form.username }}
+
+                {% for error in form.username.errors %}
+
+                    <div class="error">
+                        {{ error }}
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="form-group">
+
+                <label for="{{ form.password1.id_for_label }}">
+                    Password
+                </label>
+
+                {{ form.password1 }}
+
+                <div class="password-help">
+                    Your password must contain at least
+                    8 characters and cannot be commonly used
+                    or entirely numeric.
+                </div>
+
+                {% for error in form.password1.errors %}
+
+                    <div class="error">
+                        {{ error }}
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+
+            <!-- PASSWORD CONFIRMATION -->
+
+            <div class="form-group">
+
+                <label for="{{ form.password2.id_for_label }}">
+                    Password confirmation
+                </label>
+
+                {{ form.password2 }}
+
+                {% for error in form.password2.errors %}
+
+                    <div class="error">
+                        {{ error }}
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+
+            <!-- SUBMIT -->
+
+            <button
+                type="submit"
+                class="submit-btn"
+            >
+                Create Account ✈️
+            </button>
+
+        </form>
+
+
+        <div class="login-link">
+
+            Already have an account?
+
+            <a href="{% url 'login' %}">
+                Login
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
