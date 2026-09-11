@@ -6,6 +6,7 @@ GoPlan - Django Only Integrated Application
 
 from pathlib import Path
 import os
+import dj_database_url
 
 
 # ============================================================
@@ -152,13 +153,6 @@ LOGOUT_REDIRECT_URL="home"
 # No dj_database_url required.
 # ============================================================
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
-
 
 # ============================================================
 # PASSWORD VALIDATION
@@ -273,6 +267,14 @@ STORAGES = {
     },
 }
 
+# Add this for your database models
+DATABASES = {
+    'default': dj_database_url.config(
+        default=f"sqlite:///{os.path.join(BASE_DIR, 'db.sqlite3')}",
+        conn_max_age=600,
+        ssl_require=False  # Set to False for Render native DB, or True for Neon/Supabase
+    )
+}
 
 # ============================================================
 # MEDIA FILES

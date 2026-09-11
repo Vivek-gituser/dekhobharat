@@ -5,3 +5,4 @@ pandas
 requests
 dj-database-url
 psycopg[binary]
+dj-database-url
