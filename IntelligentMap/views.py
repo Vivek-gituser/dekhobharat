@@ -5,4 +5,4 @@ from django.contrib.auth.forms import UserCreationForm
 class Signup(CreateView):
     form_class=UserCreationForm
     template_name="signup.html"
-    success_url="login"
+    success_url="https://dekhobharat-1.onrender.com/accounts/login/"
