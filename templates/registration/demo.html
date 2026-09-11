@@ -49,32 +49,10 @@
         }
         .header p { font-size: 13px; color: #e2e8f0; font-weight: 300; }
 
-        /* Django Messages & Alerts Styling */
-        .django-messages { margin-bottom: 18px; }
-        .alert { 
-            padding: 10px 14px; 
-            border-radius: 8px; 
-            font-size: 13px; 
-            margin-bottom: 8px; 
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .alert-error, .alert-danger { 
-            background: rgba(239, 68, 68, 0.25); 
-            border: 1px solid #ef4444; 
-            color: #fca5a5; 
-        }
-        .alert-success { 
-            background: rgba(34, 197, 94, 0.25); 
-            border: 1px solid #22c55e; 
-            color: #86efac; 
-        }
-        .alert-info { 
-            background: rgba(59, 130, 246, 0.25); 
-            border: 1px solid #3b82f6; 
-            color: #93c5fd; 
-        }
+        .django-messages { margin-bottom: 15px; }
+        .alert { padding: 10px 14px; border-radius: 8px; font-size: 13px; margin-bottom: 8px; }
+        .alert-error { background: rgba(239, 68, 68, 0.25); border: 1px solid #ef4444; color: #fca5a5; }
+        .alert-success { background: rgba(34, 197, 94, 0.25); border: 1px solid #22c55e; color: #86efac; }
 
         .input-group { position: relative; margin-bottom: 18px; }
         .input-group i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #FF9933; font-size: 16px; }
@@ -129,39 +107,13 @@
             <p>Welcome back! Log in to resume your journey.</p>
         </div>
 
-        <!-- 1. Display Messages from django.contrib.messages -->
         {% if messages %}
         <div class="django-messages">
             {% for message in messages %}
-                <div class="alert alert-{% if 'error' in message.tags or 'danger' in message.tags %}error{% elif 'success' in message.tags %}success{% else %}info{% endif %}">
-                    <i class="fa-solid fa-circle-exclamation"></i>
-                    <span>{{ message }}</span>
+                <div class="alert alert-{% if message.tags %}{{ message.tags }}{% else %}error{% endif %}">
+                    {{ message }}
                 </div>
             {% endfor %}
-        </div>
-        {% endif %}
-
-        <!-- 2. Display Django Form Validation Errors (if using Django Forms/AuthenticationForm) -->
-        {% if form.errors %}
-        <div class="django-messages">
-            {% for field, errors in form.errors.items %}
-                {% for error in errors %}
-                    <div class="alert alert-error">
-                        <i class="fa-solid fa-circle-exclamation"></i>
-                        <span>{{ error }}</span>
-                    </div>
-                {% endfor %}
-            {% endfor %}
-        </div>
-        {% endif %}
-
-        <!-- 3. Display Custom Context Error Variable (if passing 'error' from views.py) -->
-        {% if error %}
-        <div class="django-messages">
-            <div class="alert alert-error">
-                <i class="fa-solid fa-circle-exclamation"></i>
-                <span>{{ error }}</span>
-            </div>
         </div>
         {% endif %}
 
@@ -169,7 +121,7 @@
             {% csrf_token %}
             <div class="input-group">
                 <i class="fa-solid fa-user"></i>
-                <input type="text" name="username" value="{{ request.POST.username|default:'' }}" placeholder="Username or Email" required>
+                <input type="text" name="username" placeholder="Username or Email" required>
             </div>
             
             <div class="input-group">
